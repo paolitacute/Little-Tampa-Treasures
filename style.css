@@ -1,0 +1,369 @@
+/* Hero Image taking exactly 25% of the viewport height */
+img.hero-image {
+    width: 100%;
+    height: 25vh; 
+    object-fit: cover;
+    display: block;
+}
+
+/* Container anchored to 25vh */
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 25vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Image fills the container */
+.hero-container img.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  border-radius: 0;
+  margin: 0;
+}
+
+/* Centered content on top of the image */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.hero-content h1 {
+  color: #ffffff;
+  margin: 0;
+  font-size: clamp(1.75rem, 4vw, 3rem); /* Dynamically scales nicely inside 25vh */
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6); /* Guarantees contrast on bright spots */
+  letter-spacing: 0.03em;
+}
+
+
+/* HEARTS BACKGROUND */
+.main-background {
+  background:
+    radial-gradient(circle closest-side at 60% 43%, white 26%, rgba(187,0,51,0) 27%),
+    radial-gradient(circle closest-side at 40% 43%, white 26%, rgba(187,0,51,0) 27%),
+    radial-gradient(circle closest-side at 42% 22%, #fce6f1 43%, rgba(221,51,85,0) 45%),
+    radial-gradient(circle closest-side at 58% 22%, #fce6f1 43%, rgba(221,51,85,0) 45%),
+    radial-gradient(circle closest-side at 50% 35%, #fce6f1 32%, rgba(221,51,85,0) 27%),
+
+    radial-gradient(circle closest-side at 60% 43%, white 26%, rgba(187,0,51,0) 27%) 50px 50px,
+    radial-gradient(circle closest-side at 40% 43%, white 26%, rgba(187,0,51,0) 27%) 50px 50px,
+    radial-gradient(circle closest-side at 40% 22%, #fce6f1 40%, rgba(221,51,85,0) 45%) 52px 50px,
+    radial-gradient(circle closest-side at 60% 22%, #fce6f1 40%, rgba(221,51,85,0) 45%) 48px 50px,
+    radial-gradient(circle closest-side at 50% 35%, #fce6f1 30%, rgba(221,51,85,0) 37%) 50px 50px;
+
+  background-color:white;
+  background-size:100px 100px;
+  min-height: 100vh;
+  height: 100%;
+}
+
+/* ASIDE */
+
+aside {
+  background-color: white;
+  min-height: 40vh;
+  border-radius: 30px;
+  box-shadow: rgba(199, 162, 245, 0.3) 0px 6px 24px 0px, rgba(199, 162, 245, 0.2) 0px 0px 0px 1px;;
+  padding: 1rem;
+}
+
+.filter-title {
+  color: blue;
+}
+/* Custom Layout Grid for Sidebar and Content */
+.layout-wrapper {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* Grid for the cards themselves */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Card Link Wrapper - Makes the whole card clickable */
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.2s ease-in-out;
+}
+
+.card-link:hover {
+    transform: translateY(-4px);
+}
+
+.card-link article {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-link article header {
+    padding: 0;
+    border-bottom: none;
+}
+
+.card-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: var(--pico-border-radius) var(--pico-border-radius) 0 0;
+}
+
+.card-link article p {
+    flex-grow: 1; /* Pushes the footer to the bottom */
+}
+
+/* Responsive adjustment for mobile */
+@media (max-width: 768px) {
+    .layout-wrapper {
+    grid-template-columns: 1fr; /* Stack sidebar on top of cards */
+    }
+}
+
+/* Card Container */
+article.hover-card {
+  position: relative;
+  overflow: hidden;
+  padding: 0; /* Overrides Pico's default article padding */
+  border-radius: 1.25rem; /* Friendly, pronounced rounded corners */
+  height: 250px; /* Fixed height so all cards look uniform */
+  margin: 0;
+  border: none;
+}
+
+/* Base Image */
+article.hover-card .card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+/* The Frosted Glass Overlay */
+article.hover-card .card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* A semi-transparent dark tint so the white text remains readable */
+  background: rgba(0, 0, 0, 0.4); 
+  /* The blur effect */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* Safari support */
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Typography and Pill Animations */
+article.hover-card .card-overlay h3,
+article.hover-card .card-overlay .tags-container {
+  color: white;
+  transform: translateY(10px);
+  transition: transform 0.3s ease;
+}
+
+/* Flexbox container to align the pills */
+article.hover-card .tags-container {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+/* The Tag Pill */
+article.hover-card .tag-pill {
+  /* Tying into Pico's theme variables for a cohesive look */
+  background-color: var(--pico-primary-background);
+  color: var(--pico-primary-inverse);
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Hover States for the new elements */
+.card-link:hover article.hover-card .card-overlay {
+  opacity: 1; 
+}
+
+.card-link:hover article.hover-card .card-overlay h3,
+.card-link:hover article.hover-card .tags-container {
+  transform: translateY(0); 
+}
+
+.card-link:hover article.hover-card .card-image {
+  transform: scale(1.05); /* Slight zoom on the image underneath */
+}
+
+/* Details Page Styling */
+.detail-card {
+  border-radius: 1.25rem;
+  overflow: hidden;
+  padding: 0;
+  margin-top: 2rem;
+  border: none;
+}
+
+.detail-image {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  display: block;
+}
+
+.detail-body {
+  padding: 2rem;
+}
+
+/* Tag Pills */
+.detail-body .tags-container {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.detail-body .tag-pill {
+  background-color: var(--pico-primary-background);
+  color: var(--pico-primary-inverse);
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Price Range ($$$) Indicator */
+.price-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.price-dollar.active {
+  color: var(--pico-primary);
+}
+
+.price-dollar.inactive {
+  color: #d1d5db; /* Greyed out */
+  opacity: 0.6;
+}
+
+/* Meta Data Row */
+.meta-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+  padding: 1rem 0;
+  border-top: 1px solid var(--pico-muted-border-color);
+  border-bottom: 1px solid var(--pico-muted-border-color);
+}
+
+.meta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.meta-label {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--pico-muted-color);
+  min-width: 100px;
+}
+
+/* 404 Page Layout */
+.error-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh; /* Takes up the majority of the viewport height */
+  text-align: center;
+}
+
+.error-card {
+  padding: 4rem 2rem;
+  border-radius: 1.25rem; /* Matches your friendly rounded corners */
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
+  max-width: 600px;
+}
+
+.error-code {
+  font-size: clamp(5rem, 15vw, 10rem);
+  font-weight: 900;
+  color: var(--pico-primary); /* Inherits the Pico purple */
+  margin-bottom: 0.5rem;
+  line-height: 1;
+  text-shadow: 0 4px 12px rgba(74, 20, 140, 0.15); /* Subtle purple glow */
+}
+
+.error-container h2 {
+  margin-bottom: 1rem;
+}
+
+.error-container p {
+  color: var(--pico-muted-color);
+  margin-bottom: 2.5rem;
+}
+
+/* Description Typography and Truncation */
+article.hover-card .card-overlay .card-description {
+  color: #e9ecef; /* Slightly muted white for visual hierarchy */
+  font-size: 0.85rem;
+  line-height: 1.4;
+  margin: 0.75rem 0;
+  
+  /* Limits the text to 3 lines and adds an ellipsis (...) if it's too long */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+  /* Matches the slide-up animation initial state */
+  transform: translateY(10px);
+  transition: transform 0.3s ease;
+}
+
+/* Trigger the slide-up animation on hover */
+.card-link:hover article.hover-card .card-overlay .card-description {
+  transform: translateY(0); 
+}

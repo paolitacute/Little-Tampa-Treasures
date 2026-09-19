@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./pico-main/css/pico.conditional.purple.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <script type="module" src="./script.js" defer></script>
+</head>
+<body>
+    <div class="pico">
+    
+        <!-- Hero Section -->
+        <header class="hero-container">
+        <img src="./pics/fondo.jpg" alt="Hero background" class="hero-image">
+        <div class="hero-content">
+            <h1>Little Tampa Treasures</h1>
+        </div>
+        </header>
+
+        <div class="main-background">
+            <main class="container">
+            <div class="layout-wrapper">
+                
+                <!-- Sidebar: Search and Filters -->
+                <aside>
+                <form onsubmit="event.preventDefault();">
+                    <fieldset id="tag-filters">
+                    <legend classname="filter-title">Filter by Tags</legend>
+                    <label>
+                        <input type="checkbox" name="tag" value="hardware" /> Hardware
+                    </label>
+                    <label>
+                        <input type="checkbox" name="tag" value="vision" /> Computer Vision
+                    </label>
+                    <label>
+                        <input type="checkbox" name="tag" value="web" /> Web App
+                    </label>
+                    <label>
+                        <input type="checkbox" name="tag" value="database" /> Database
+                    </label>
+                    </fieldset>
+                </form>
+                </aside>
+
+                <!-- Main Content: Cards -->
+                <section>
+                <div class="cards-grid" id="cards-container">
+                    <!-- Cards will be injected here via JavaScript -->
+                </div>
+                </section>
+
+            </div>
+            </main>
+        </div>
+        
+    </div>
+  </body>
+</html>
